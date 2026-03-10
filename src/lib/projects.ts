@@ -1,0 +1,50 @@
+import { Project } from "@/types";
+
+export const projects: Project[] = [
+  {
+    slug: "7011-bramble",
+    title: "7011 Bramble Ave",
+    location: "Mariemont, Ohio",
+    year: "2026",
+    scope: "Full Home — Kitchen, Dining & Living",
+    description:
+      "A thoughtful transformation of a charming Mariemont home, blending soft blues and warm golds with playful pattern and timeless materials. Every room tells a story of comfort and quiet joy.",
+    heroImage: "/images/portfolio/7011-bramble/kitchen-rendering.png",
+    images: [
+      "/images/portfolio/7011-bramble/kitchen-rendering.png",
+      "/images/portfolio/7011-bramble/kitchen-materials.png",
+      "/images/portfolio/7011-bramble/kitchen-dining.png",
+      "/images/portfolio/7011-bramble/living-room-rendering.png",
+      "/images/portfolio/7011-bramble/living-room-materials.png",
+      "/images/portfolio/7011-bramble/living-room-details.png",
+      "/images/portfolio/7011-bramble/creek-living.png",
+    ],
+    featured: true,
+    order: 1,
+  },
+  {
+    slug: "hugga",
+    title: "Hugga",
+    location: "Ohio",
+    year: "2026",
+    scope: "Vacation Rental — Living, Kids Room & Signage",
+    description:
+      "A cozy cabin retreat designed for gathering and rest. Natural materials, earthy greens, and Scandinavian-inspired warmth create a space where families can slow down and feel at home.",
+    heroImage: "/images/portfolio/hugga/creek-living.png",
+    images: [
+      "/images/portfolio/hugga/creek-living.png",
+      "/images/portfolio/hugga/kids-bunk-room.png",
+      "/images/portfolio/hugga/sign-design.png",
+    ],
+    featured: true,
+    order: 2,
+  },
+];
+
+export function getProjectBySlug(slug: string): Project | undefined {
+  return projects.find((p) => p.slug === slug);
+}
+
+export function getFeaturedProjects(): Project[] {
+  return projects.filter((p) => p.featured).sort((a, b) => a.order - b.order);
+}
