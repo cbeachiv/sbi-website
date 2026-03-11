@@ -49,7 +49,7 @@ export default function AboutPage() {
             <ScrollReveal>
               <div className="relative aspect-[2/3] overflow-hidden">
                 <Image
-                  src="/images/portfolio/7011-bramble/creek-living.png"
+                  src="/images/about/sarah-headshot.png"
                   alt="Sarah, founder of Wren Studio"
                   fill
                   className="object-cover"
@@ -63,21 +63,26 @@ export default function AboutPage() {
               />
               <div className="mt-6 space-y-4 font-sans text-base font-light leading-[1.7] text-stone-light">
                 <p>
-                  Wren Studio was born from a simple belief: that the spaces we
-                  inhabit shape the way we feel, connect, and live. Founded by
-                  Sarah in Mariemont, Ohio, the studio brings a deeply personal
-                  approach to interior design.
+                  Sarah&apos;s path to interior design began at the University of
+                  Guadalajara, where she earned her degree in design. After
+                  graduating, she spent five years at a high-end Italian
+                  appliance showroom, immersing herself in the world of
+                  premium European brands like Gaggenau and Miele — developing
+                  a deep appreciation for craftsmanship, materials, and the
+                  details that elevate everyday living. She then joined an
+                  interior design studio in Guadalajara, where she spent four
+                  years honing her craft across both residential and commercial
+                  projects.
                 </p>
                 <p>
-                  With an eye for layered simplicity and a love for honest
-                  materials — think linen, stone, soft light, and warm wood — Sarah
-                  creates interiors that feel both elevated and effortlessly
-                  comfortable.
-                </p>
-                <p>
-                  Every project begins with listening. Understanding how you
-                  live, what brings you joy, and what &ldquo;home&rdquo; truly means to you.
-                  From there, we craft spaces that are uniquely, beautifully yours.
+                  In 2022, Sarah met her husband, and after marrying in 2024,
+                  she made the move to the United States — first to Encinitas,
+                  California, and then to Mariemont, Ohio. It was here, inspired
+                  by a new chapter and a love for creating spaces that feel both
+                  beautiful and deeply personal, that she founded Wren Studio in
+                  2025. Drawing on years of international experience and a keen
+                  eye for thoughtful design, Sarah brings warmth, intention, and
+                  a global perspective to every project.
                 </p>
               </div>
             </ScrollReveal>
