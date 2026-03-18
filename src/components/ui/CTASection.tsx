@@ -30,12 +30,6 @@ export default function CTASection({
             hello@sarahbeachinteriors.com
             <span className="absolute bottom-0 left-0 h-px w-full bg-warmth origin-left scale-x-0 transition-transform duration-300 ease-[cubic-bezier(0.25,0.1,0.25,1)] group-hover:scale-x-100" />
           </a>
-          <a
-            href="tel:+15550000000"
-            className="font-sans text-sm font-light tracking-[0.04em] text-linen/80"
-          >
-            (555) 000-0000
-          </a>
         </div>
       </ScrollReveal>
     </section>

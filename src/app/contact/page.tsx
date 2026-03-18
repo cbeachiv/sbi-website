@@ -48,19 +48,6 @@ export default function ContactPage() {
 
               <div>
                 <p className="font-sans text-xs font-medium uppercase tracking-[0.1em] text-warmth mb-3">
-                  Phone
-                </p>
-                <a
-                  href="tel:+15550000000"
-                  className="group relative inline-block font-serif text-2xl font-light tracking-[0.04em] text-charcoal"
-                >
-                  (555) 000-0000
-                  <span className="absolute -bottom-1 left-0 h-px w-full bg-warmth origin-left scale-x-0 transition-transform duration-300 ease-[cubic-bezier(0.25,0.1,0.25,1)] group-hover:scale-x-100" />
-                </a>
-              </div>
-
-              <div>
-                <p className="font-sans text-xs font-medium uppercase tracking-[0.1em] text-warmth mb-3">
                   Location
                 </p>
                 <p className="font-serif text-2xl font-light tracking-[0.04em] text-charcoal">
