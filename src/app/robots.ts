@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://wrenstudio.com/sitemap.xml",
+    sitemap: "https://sarahbeachinteriors.com/sitemap.xml",
   };
 }

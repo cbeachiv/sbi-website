@@ -49,10 +49,10 @@ export default function Header() {
             className="relative z-50 flex items-center gap-3"
             onClick={() => setIsMobileMenuOpen(false)}
           >
-            {/* Bird Icon SVG */}
+            {/* SBI Monogram */}
             <svg
-              width="28"
-              height="28"
+              width="34"
+              height="34"
               viewBox="0 0 100 100"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -64,11 +64,8 @@ export default function Header() {
                   : "text-linen"
               }`}
             >
-              <path
-                d="M50 15C35 15 25 30 25 45C25 55 30 63 38 68L20 85C20 85 40 80 55 70C65 63 75 50 75 35C75 25 65 15 50 15Z"
-                fill="currentColor"
-              />
-              <circle cx="42" cy="40" r="3" fill="currentColor" opacity="0.3" />
+              <rect x="4" y="4" width="92" height="92" stroke="currentColor" strokeWidth="1.5" fill="none"/>
+              <text x="50" y="66" textAnchor="middle" fontFamily="'Cormorant Garamond', Georgia, serif" fontSize="38" fontWeight="300" fill="currentColor" letterSpacing="3">SBI</text>
             </svg>
             <span
               className={`font-serif text-xl font-light tracking-[0.08em] transition-colors duration-500 ${
@@ -79,7 +76,7 @@ export default function Header() {
                   : "text-linen"
               }`}
             >
-              WREN STUDIO
+              SARAH BEACH INTERIORS
             </span>
           </Link>
 

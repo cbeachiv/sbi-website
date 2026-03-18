@@ -7,7 +7,7 @@ import SectionHeading from "@/components/ui/SectionHeading";
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Get in touch with Wren Studio. We'd love to hear about your project and help you create a space that feels like home.",
+    "Get in touch with Sarah Beach Interiors. We'd love to hear about your project and help you create a space that feels like home.",
 };
 
 export default function ContactPage() {
@@ -38,10 +38,10 @@ export default function ContactPage() {
                   Email
                 </p>
                 <a
-                  href="mailto:hello@wrenstudio.com"
+                  href="mailto:hello@sarahbeachinteriors.com"
                   className="group relative inline-block font-serif text-2xl font-light tracking-[0.04em] text-charcoal"
                 >
-                  hello@wrenstudio.com
+                  hello@sarahbeachinteriors.com
                   <span className="absolute -bottom-1 left-0 h-px w-full bg-warmth origin-left scale-x-0 transition-transform duration-300 ease-[cubic-bezier(0.25,0.1,0.25,1)] group-hover:scale-x-100" />
                 </a>
               </div>

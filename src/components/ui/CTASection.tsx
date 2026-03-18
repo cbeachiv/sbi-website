@@ -24,10 +24,10 @@ export default function CTASection({
         </p>
         <div className="flex flex-col items-center gap-3">
           <a
-            href="mailto:hello@wrenstudio.com"
+            href="mailto:hello@sarahbeachinteriors.com"
             className="group relative inline-block font-sans text-sm font-medium uppercase tracking-[0.06em] text-linen"
           >
-            hello@wrenstudio.com
+            hello@sarahbeachinteriors.com
             <span className="absolute bottom-0 left-0 h-px w-full bg-warmth origin-left scale-x-0 transition-transform duration-300 ease-[cubic-bezier(0.25,0.1,0.25,1)] group-hover:scale-x-100" />
           </a>
           <a

@@ -17,7 +17,7 @@ export default function Home() {
         <div className="absolute inset-0" style={{ animation: "kenburns 20s ease-in-out infinite alternate" }}>
           <Image
             src="/images/portfolio/7011-bramble/creek-living.png"
-            alt="Beautifully designed living space by Wren Studio"
+            alt="Beautifully designed living space by Sarah Beach Interiors"
             fill
             className="object-cover"
             priority
@@ -50,13 +50,13 @@ export default function Home() {
                 heading="We believe in spaces that breathe."
               />
               <p className="mt-6 font-sans text-base font-light leading-[1.7] text-stone-light max-w-lg">
-                At Wren Studio, design is more than aesthetics &mdash; it&rsquo;s about creating
+                At Sarah Beach Interiors, design is more than aesthetics &mdash; it&rsquo;s about creating
                 spaces where you feel free, joyful, and completely yourself. We layer
                 natural materials, honest textures, and soft light to craft interiors
                 that feel lived-in from the very first day.
               </p>
               <div className="mt-8">
-                <AnimatedLink href="/about">About Wren Studio &rarr;</AnimatedLink>
+                <AnimatedLink href="/about">About Sarah Beach Interiors &rarr;</AnimatedLink>
               </div>
             </ScrollReveal>
             <ScrollReveal delay={150}>

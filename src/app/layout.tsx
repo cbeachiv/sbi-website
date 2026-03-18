@@ -20,15 +20,15 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    template: "%s | Wren Studio",
-    default: "Wren Studio | Interior Design in Mariemont, Ohio",
+    template: "%s | Sarah Beach Interiors",
+    default: "Sarah Beach Interiors | Interior Design in Mariemont, Ohio",
   },
   description:
-    "Wren Studio is an interior design studio based in Mariemont, Ohio. We create spaces that breathe — rooted in beauty, guided by intention.",
+    "Sarah Beach Interiors is an interior design studio based in Mariemont, Ohio. We create spaces that breathe — rooted in beauty, guided by intention.",
   openGraph: {
     type: "website",
     locale: "en_US",
-    siteName: "Wren Studio",
+    siteName: "Sarah Beach Interiors",
   },
 };
 

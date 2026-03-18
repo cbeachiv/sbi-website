@@ -9,7 +9,7 @@ import CTASection from "@/components/ui/CTASection";
 export const metadata: Metadata = {
   title: "Services",
   description:
-    "From design consultations to full-service interior design, Wren Studio guides you from first conversation to final styling.",
+    "From design consultations to full-service interior design, Sarah Beach Interiors guides you from first conversation to final styling.",
 };
 
 const processSteps = [

@@ -8,7 +8,7 @@ import CTASection from "@/components/ui/CTASection";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Meet Sarah, the founder of Wren Studio. We create spaces rooted in beauty, guided by intention — celebrating freedom, joy, warmth, and authenticity.",
+    "Meet Sarah, the founder of Sarah Beach Interiors. We create spaces rooted in beauty, guided by intention — celebrating freedom, joy, warmth, and authenticity.",
 };
 
 const values = [
@@ -50,7 +50,7 @@ export default function AboutPage() {
               <div className="relative aspect-[2/3] overflow-hidden">
                 <Image
                   src="/images/about/sarah-headshot.png"
-                  alt="Sarah, founder of Wren Studio"
+                  alt="Sarah, founder of Sarah Beach Interiors"
                   fill
                   className="object-cover"
                 />
@@ -79,7 +79,7 @@ export default function AboutPage() {
                   she made the move to the United States — first to Encinitas,
                   California, and then to Mariemont, Ohio. It was here, inspired
                   by a new chapter and a love for creating spaces that feel both
-                  beautiful and deeply personal, that she founded Wren Studio in
+                  beautiful and deeply personal, that she founded Sarah Beach Interiors in
                   2025. Drawing on years of international experience and a keen
                   eye for thoughtful design, Sarah brings warmth, intention, and
                   a global perspective to every project.
@@ -122,31 +122,28 @@ export default function AboutPage() {
       <section className="bg-cream py-16 md:py-24 lg:py-32">
         <div className="mx-auto max-w-xl px-6 text-center">
           <ScrollReveal>
-            {/* Bird icon */}
+            {/* SBI Monogram */}
             <svg
-              width="64"
-              height="64"
+              width="80"
+              height="80"
               viewBox="0 0 100 100"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
               className="mx-auto text-stone-light mb-8"
             >
-              <path
-                d="M50 15C35 15 25 30 25 45C25 55 30 63 38 68L20 85C20 85 40 80 55 70C65 63 75 50 75 35C75 25 65 15 50 15Z"
-                fill="currentColor"
-              />
-              <circle cx="42" cy="40" r="3" fill="currentColor" opacity="0.3" />
+              <rect x="4" y="4" width="92" height="92" stroke="currentColor" strokeWidth="1.5" fill="none"/>
+              <text x="50" y="66" textAnchor="middle" fontFamily="'Cormorant Garamond', Georgia, serif" fontSize="38" fontWeight="300" fill="currentColor" letterSpacing="3">SBI</text>
             </svg>
             <SectionHeading
               label="The Name"
-              heading="Inspired by the wren."
+              heading="A name rooted in who she is."
               centered
             />
             <p className="mt-6 font-sans text-base font-light leading-[1.7] text-stone-light">
-              The wren is a small bird known for its bold spirit and melodic
-              song. Despite its size, it fills the world with beauty. Wren Studio
-              celebrates that same spirit — the beauty of small details and the
-              power of transformation through design.
+              Sarah Beach Interiors carries its founder&apos;s name for a reason —
+              every project is a personal expression of Sarah&apos;s vision, values,
+              and eye for beauty. The SBI monogram is a quiet mark of that
+              commitment: refined, intentional, and unmistakably hers.
             </p>
           </ScrollReveal>
         </div>

@@ -18,7 +18,7 @@ export default function Footer() {
               href="/"
               className="font-serif text-xl font-light tracking-[0.08em] text-cream"
             >
-              WREN STUDIO
+              SARAH BEACH INTERIORS
             </Link>
             <p className="mt-4 font-serif text-lg font-light italic tracking-[0.02em] text-cream/60">
               Beauty in every detail.
@@ -51,10 +51,10 @@ export default function Footer() {
             </p>
             <div className="flex flex-col gap-3">
               <a
-                href="mailto:hello@wrenstudio.com"
+                href="mailto:hello@sarahbeachinteriors.com"
                 className="group relative inline-block w-fit font-sans text-sm font-light tracking-[0.04em] text-cream/80 transition-colors hover:text-cream"
               >
-                hello@wrenstudio.com
+                hello@sarahbeachinteriors.com
                 <span className="absolute -bottom-0.5 left-0 h-px w-full bg-warmth origin-left scale-x-0 transition-transform duration-300 ease-[cubic-bezier(0.25,0.1,0.25,1)] group-hover:scale-x-100" />
               </a>
               <a
@@ -73,7 +73,7 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="mt-16 border-t border-cream/10 pt-6">
           <p className="font-sans text-xs font-light tracking-[0.04em] text-cream/40">
-            &copy; {new Date().getFullYear()} Wren Studio. All rights reserved.
+            &copy; {new Date().getFullYear()} Sarah Beach Interiors. All rights reserved.
           </p>
         </div>
       </div>
