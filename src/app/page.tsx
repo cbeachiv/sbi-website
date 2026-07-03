@@ -5,6 +5,7 @@ import SectionHeading from "@/components/ui/SectionHeading";
 import Divider from "@/components/ui/Divider";
 import AnimatedLink from "@/components/ui/AnimatedLink";
 import CTASection from "@/components/ui/CTASection";
+import BeforeAfterSlider from "@/components/ui/BeforeAfterSlider";
 import { getFeaturedProjects } from "@/lib/projects";
 
 export default function Home() {
@@ -73,8 +74,40 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Featured Projects */}
+      {/* Before & After */}
       <section className="bg-linen py-16 md:py-24 lg:py-32">
+        <div className="mx-auto max-w-5xl px-6 md:px-12">
+          <ScrollReveal>
+            <SectionHeading
+              label="Before & After"
+              heading="Seeing is believing."
+              centered
+            />
+            <p className="mx-auto mt-6 max-w-xl text-center font-sans text-base font-light leading-[1.7] text-stone-light">
+              The same Mariemont kitchen, from the same spot &mdash; before and
+              after. Drag the handle to see the transformation.
+            </p>
+          </ScrollReveal>
+
+          <ScrollReveal className="mt-10 md:mt-14">
+            <BeforeAfterSlider
+              beforeSrc="/images/portfolio/7011-bramble/kitchen-before.jpg"
+              afterSrc="/images/portfolio/7011-bramble/kitchen-after.jpg"
+              alt="7011 Bramble Ave kitchen"
+              aspectClass="aspect-[3/2]"
+            />
+          </ScrollReveal>
+
+          <ScrollReveal className="mt-8 text-center">
+            <AnimatedLink href="/portfolio/7011-bramble">
+              See the Full Transformation &rarr;
+            </AnimatedLink>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      {/* Featured Projects */}
+      <section className="bg-cream py-16 md:py-24 lg:py-32">
         <div className="mx-auto max-w-7xl px-6 md:px-12 lg:px-20">
           <ScrollReveal>
             <SectionHeading
@@ -120,7 +153,7 @@ export default function Home() {
       </section>
 
       {/* Services Preview */}
-      <section className="bg-cream py-16 md:py-24 lg:py-32">
+      <section className="bg-linen py-16 md:py-24 lg:py-32">
         <div className="mx-auto max-w-2xl px-6 text-center">
           <ScrollReveal>
             <SectionHeading
