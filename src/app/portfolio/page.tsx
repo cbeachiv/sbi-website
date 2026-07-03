@@ -17,7 +17,7 @@ export default function PortfolioPage() {
     <>
       <PageHero
         title="Portfolio"
-        imageSrc="/images/portfolio/7011-bramble/kitchen-rendering.png"
+        imageSrc="/images/portfolio/7011-bramble/kitchen-full.jpg"
       />
 
       <section className="bg-cream py-16 md:py-24 lg:py-32">

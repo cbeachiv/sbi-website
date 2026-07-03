@@ -50,7 +50,7 @@ export default function ServicesPage() {
     <>
       <PageHero
         title="Services"
-        imageSrc="/images/portfolio/7011-bramble/living-room-details.png"
+        imageSrc="/images/portfolio/7011-bramble/dining-nook.jpg"
       />
 
       {/* Intro */}
@@ -76,8 +76,8 @@ export default function ServicesPage() {
             <ScrollReveal>
               <div className="relative aspect-[4/3] overflow-hidden">
                 <Image
-                  src="/images/portfolio/7011-bramble/kitchen-materials.png"
-                  alt="Design consultation materials"
+                  src="/images/portfolio/7011-bramble/kitchen-full.jpg"
+                  alt="Kitchen designed by Sarah Beach Interiors"
                   fill
                   className="object-cover"
                 />
@@ -123,8 +123,8 @@ export default function ServicesPage() {
             <ScrollReveal delay={150} className="order-1 md:order-2">
               <div className="relative aspect-[4/3] overflow-hidden">
                 <Image
-                  src="/images/portfolio/7011-bramble/living-room-rendering.png"
-                  alt="Full-service interior design rendering"
+                  src="/images/portfolio/7011-bramble/living-room.jpg"
+                  alt="Living room designed by Sarah Beach Interiors"
                   fill
                   className="object-cover"
                 />
@@ -207,7 +207,7 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      <CTASection imageSrc="/images/portfolio/hugga/creek-living.png" />
+      <CTASection imageSrc="/images/portfolio/7011-bramble/kitchen-sink.jpg" />
     </>
   );
 }

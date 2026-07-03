@@ -15,7 +15,7 @@ export default function ContactPage() {
     <>
       <PageHero
         title="Contact"
-        imageSrc="/images/portfolio/7011-bramble/kitchen-rendering.png"
+        imageSrc="/images/portfolio/7011-bramble/kitchen-sink.jpg"
       />
 
       {/* Contact Info */}
@@ -62,7 +62,7 @@ export default function ContactPage() {
       {/* Atmospheric Image */}
       <section className="relative h-[50vh]">
         <Image
-          src="/images/portfolio/hugga/kids-bunk-room.png"
+          src="/images/portfolio/7011-bramble/living-room.jpg"
           alt="Thoughtfully designed interior space"
           fill
           className="object-cover"

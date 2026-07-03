@@ -39,7 +39,7 @@ export default function AboutPage() {
     <>
       <PageHero
         title="About"
-        imageSrc="/images/portfolio/hugga/creek-living.png"
+        imageSrc="/images/portfolio/7011-bramble/kitchen-full.jpg"
       />
 
       {/* The Story */}
@@ -149,7 +149,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <CTASection imageSrc="/images/portfolio/7011-bramble/living-room-rendering.png" />
+      <CTASection imageSrc="/images/portfolio/7011-bramble/wallpaper-detail.jpg" />
     </>
   );
 }

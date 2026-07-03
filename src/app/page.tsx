@@ -16,8 +16,8 @@ export default function Home() {
       <section className="relative flex min-h-screen items-center justify-center overflow-hidden">
         <div className="absolute inset-0" style={{ animation: "kenburns 20s ease-in-out infinite alternate" }}>
           <Image
-            src="/images/portfolio/7011-bramble/creek-living.png"
-            alt="Beautifully designed living space by Sarah Beach Interiors"
+            src="/images/portfolio/7011-bramble/kitchen-sink.jpg"
+            alt="Beautifully designed kitchen by Sarah Beach Interiors"
             fill
             className="object-cover"
             priority
@@ -62,8 +62,8 @@ export default function Home() {
             <ScrollReveal delay={150}>
               <div className="relative aspect-[3/4] overflow-hidden">
                 <Image
-                  src="/images/portfolio/hugga/creek-living.png"
-                  alt="A thoughtfully designed living space"
+                  src="/images/portfolio/7011-bramble/dining-nook.jpg"
+                  alt="A thoughtfully designed dining nook"
                   fill
                   className="object-cover"
                 />
@@ -164,7 +164,7 @@ export default function Home() {
       </section>
 
       {/* CTA */}
-      <CTASection imageSrc="/images/portfolio/7011-bramble/living-room-rendering.png" />
+      <CTASection imageSrc="/images/portfolio/7011-bramble/wallpaper-detail.jpg" />
     </>
   );
 }
