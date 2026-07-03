@@ -23,16 +23,16 @@ export const projects: Project[] = [
   {
     slug: "hugga",
     title: "Hugga",
-    location: "Ohio",
+    location: "Hocking Hills, Ohio",
     year: "2026",
-    scope: "Vacation Rental — Living, Kids Room & Signage",
+    scope: "Vacation Rental — Cabin Redesigns",
     description:
       "A cozy cabin retreat designed for gathering and rest. Natural materials, earthy greens, and Scandinavian-inspired warmth create a space where families can slow down and feel at home.",
-    heroImage: "/images/portfolio/hugga/creek-living.png",
+    heroImage: "/images/portfolio/hugga/creek-living.jpg",
     images: [
-      "/images/portfolio/hugga/creek-living.png",
-      "/images/portfolio/hugga/kids-bunk-room.png",
-      "/images/portfolio/hugga/sign-design.png",
+      "/images/portfolio/hugga/creek-living.jpg",
+      "/images/portfolio/hugga/kids-bunk-room.jpg",
+      "/images/portfolio/hugga/pine-living.jpg",
     ],
     featured: true,
     order: 2,
