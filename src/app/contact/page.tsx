@@ -3,18 +3,24 @@ import Image from "next/image";
 import PageHero from "@/components/ui/PageHero";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import SectionHeading from "@/components/ui/SectionHeading";
+import { getI18n } from "@/lib/i18n";
 
-export const metadata: Metadata = {
-  title: "Contact",
-  description:
-    "Get in touch with Sarah Beach Interiors. We'd love to hear about your project and help you create a space that feels like home.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const { dict } = await getI18n();
+  return {
+    title: dict.contact.metaTitle,
+    description: dict.contact.metaDescription,
+  };
+}
 
-export default function ContactPage() {
+export default async function ContactPage() {
+  const { dict } = await getI18n();
+  const t = dict.contact;
+
   return (
     <>
       <PageHero
-        title="Contact"
+        title={t.heroTitle}
         imageSrc="/images/portfolio/7011-bramble/kitchen-sink.jpg"
       />
 
@@ -23,19 +29,17 @@ export default function ContactPage() {
         <div className="mx-auto max-w-xl px-6 text-center">
           <ScrollReveal>
             <SectionHeading
-              heading="We&rsquo;d love to hear from you."
+              heading={t.heading}
               centered
             />
             <p className="mt-6 font-sans text-base font-light leading-[1.7] text-stone-light">
-              Whether you&rsquo;re dreaming of a full home transformation or just
-              need a little guidance, we&rsquo;re here to help. Reach out and
-              let&rsquo;s start a conversation about your space.
+              {t.body}
             </p>
 
             <div className="mt-12 space-y-6">
               <div>
                 <p className="font-sans text-xs font-medium uppercase tracking-[0.1em] text-warmth mb-3">
-                  Email
+                  {t.emailLabel}
                 </p>
                 <a
                   href="mailto:hello@sarahbeachinteriors.com"
@@ -48,10 +52,10 @@ export default function ContactPage() {
 
               <div>
                 <p className="font-sans text-xs font-medium uppercase tracking-[0.1em] text-warmth mb-3">
-                  Location
+                  {t.locationLabel}
                 </p>
                 <p className="font-serif text-2xl font-light tracking-[0.04em] text-charcoal">
-                  Mariemont, Ohio
+                  {t.location}
                 </p>
               </div>
             </div>
@@ -63,7 +67,7 @@ export default function ContactPage() {
       <section className="relative h-[50vh]">
         <Image
           src="/images/portfolio/7011-bramble/living-room.jpg"
-          alt="Thoughtfully designed interior space"
+          alt={t.imageAlt}
           fill
           className="object-cover"
         />

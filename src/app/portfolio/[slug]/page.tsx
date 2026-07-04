@@ -1,26 +1,25 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import AnimatedLink from "@/components/ui/AnimatedLink";
 import BeforeAfterSlider from "@/components/ui/BeforeAfterSlider";
 import SectionHeading from "@/components/ui/SectionHeading";
-import { projects, getProjectBySlug } from "@/lib/projects";
+import { getProjects, getProjectBySlug, getProjectSlugs } from "@/lib/projects";
+import { getI18n } from "@/lib/i18n";
 
 interface Props {
   params: Promise<{ slug: string }>;
 }
 
 export async function generateStaticParams() {
-  return projects.map((project) => ({
-    slug: project.slug,
-  }));
+  return getProjectSlugs().map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const project = getProjectBySlug(slug);
+  const { locale } = await getI18n();
+  const project = getProjectBySlug(slug, locale);
   if (!project) return {};
 
   return {
@@ -31,12 +30,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function ProjectPage({ params }: Props) {
   const { slug } = await params;
-  const project = getProjectBySlug(slug);
+  const { locale, dict } = await getI18n();
+  const t = dict.project;
+  const project = getProjectBySlug(slug, locale);
 
   if (!project) {
     notFound();
   }
 
+  const projects = getProjects(locale);
   const currentIndex = projects.findIndex((p) => p.slug === slug);
   const prevProject = currentIndex > 0 ? projects[currentIndex - 1] : null;
   const nextProject =
@@ -91,8 +93,8 @@ export default async function ProjectPage({ params }: Props) {
           <div className="mx-auto max-w-5xl px-6 md:px-12">
             <ScrollReveal className="mb-12 md:mb-16">
               <SectionHeading
-                label="Before & After"
-                heading="Same rooms. A whole new story."
+                label={t.beforeAfterLabel}
+                heading={t.beforeAfterHeading}
                 centered
               />
             </ScrollReveal>
@@ -106,9 +108,13 @@ export default async function ProjectPage({ params }: Props) {
                       afterSrc={pair.after}
                       alt={project.title}
                       aspectClass="aspect-[3/2]"
+                      beforeLabel={dict.slider.before}
+                      afterLabel={dict.slider.after}
+                      comparisonAriaLabel={dict.slider.comparisonAria}
                     />
                     <p className="mt-4 text-center font-sans text-sm font-light leading-[1.7] text-stone-light">
-                      {pair.caption} <span className="text-warmth">Drag to compare.</span>
+                      {pair.caption}{" "}
+                      <span className="text-warmth">{dict.slider.dragToCompare}</span>
                     </p>
                   </ScrollReveal>
                 ) : (
@@ -118,12 +124,12 @@ export default async function ProjectPage({ params }: Props) {
                         <div className="relative aspect-[4/5] overflow-hidden">
                           <Image
                             src={pair.before}
-                            alt={`${project.title} — before`}
+                            alt={`${project.title} — ${dict.slider.before}`}
                             fill
                             className="object-cover"
                           />
                           <span className="absolute top-4 left-4 bg-charcoal/60 px-3 py-1.5 font-sans text-[10px] font-medium uppercase tracking-[0.15em] text-linen backdrop-blur-sm">
-                            Before
+                            {dict.slider.before}
                           </span>
                         </div>
                       </ScrollReveal>
@@ -131,12 +137,12 @@ export default async function ProjectPage({ params }: Props) {
                         <div className="relative aspect-[4/5] overflow-hidden">
                           <Image
                             src={pair.after}
-                            alt={`${project.title} — after`}
+                            alt={`${project.title} — ${dict.slider.after}`}
                             fill
                             className="object-cover"
                           />
                           <span className="absolute top-4 left-4 bg-linen/85 px-3 py-1.5 font-sans text-[10px] font-medium uppercase tracking-[0.15em] text-charcoal backdrop-blur-sm">
-                            After
+                            {dict.slider.after}
                           </span>
                         </div>
                       </ScrollReveal>
@@ -160,8 +166,8 @@ export default async function ProjectPage({ params }: Props) {
           <div className="mx-auto max-w-7xl px-6 md:px-12 lg:px-20">
             <ScrollReveal className="mb-12 md:mb-20">
               <SectionHeading
-                label="The Process"
-                heading="From first meeting to final reveal."
+                label={t.processLabel}
+                heading={t.processHeading}
                 centered
               />
             </ScrollReveal>
@@ -210,8 +216,8 @@ export default async function ProjectPage({ params }: Props) {
               <div className="mt-16 md:mt-24">
                 <ScrollReveal className="mb-10 md:mb-12">
                   <SectionHeading
-                    label="The Promise, Kept"
-                    heading="From rendering to reality."
+                    label={t.promiseLabel}
+                    heading={t.promiseHeading}
                     centered
                   />
                 </ScrollReveal>
@@ -220,12 +226,12 @@ export default async function ProjectPage({ params }: Props) {
                     <div className="relative aspect-[4/5] overflow-hidden">
                       <Image
                         src={project.visionToReality.rendering}
-                        alt={`${project.title} — concept rendering`}
+                        alt={`${project.title} — ${t.renderingAlt}`}
                         fill
                         className="object-cover"
                       />
                       <span className="absolute top-4 left-4 bg-charcoal/60 px-3 py-1.5 font-sans text-[10px] font-medium uppercase tracking-[0.15em] text-linen backdrop-blur-sm">
-                        The Rendering
+                        {t.renderingBadge}
                       </span>
                     </div>
                   </ScrollReveal>
@@ -233,12 +239,12 @@ export default async function ProjectPage({ params }: Props) {
                     <div className="relative aspect-[4/5] overflow-hidden">
                       <Image
                         src={project.visionToReality.reality}
-                        alt={`${project.title} — the finished space`}
+                        alt={`${project.title} — ${t.realityAlt}`}
                         fill
                         className="object-cover"
                       />
                       <span className="absolute top-4 left-4 bg-linen/85 px-3 py-1.5 font-sans text-[10px] font-medium uppercase tracking-[0.15em] text-charcoal backdrop-blur-sm">
-                        The Reality
+                        {t.realityBadge}
                       </span>
                     </div>
                   </ScrollReveal>
@@ -260,8 +266,8 @@ export default async function ProjectPage({ params }: Props) {
           {(project.beforeAfters || project.process) && (
             <ScrollReveal className="mb-12 md:mb-16">
               <SectionHeading
-                label="The Finished Home"
-                heading="A closer look."
+                label={t.finishedLabel}
+                heading={t.finishedHeading}
                 centered
               />
             </ScrollReveal>
@@ -280,7 +286,7 @@ export default async function ProjectPage({ params }: Props) {
                     <div className="relative aspect-[16/9] overflow-hidden">
                       <Image
                         src={image}
-                        alt={`${project.title} — Design ${index + 1}`}
+                        alt={`${project.title} — ${t.designAlt} ${index + 1}`}
                         fill
                         className="object-cover"
                       />
@@ -300,7 +306,7 @@ export default async function ProjectPage({ params }: Props) {
                     <div className="relative aspect-[4/3] overflow-hidden">
                       <Image
                         src={image}
-                        alt={`${project.title} — Design ${index + 1}`}
+                        alt={`${project.title} — ${t.designAlt} ${index + 1}`}
                         fill
                         className="object-cover"
                       />
@@ -311,7 +317,7 @@ export default async function ProjectPage({ params }: Props) {
                       <div className="relative aspect-[4/3] overflow-hidden">
                         <Image
                           src={nextImage}
-                          alt={`${project.title} — Design ${index + 2}`}
+                          alt={`${project.title} — ${t.designAlt} ${index + 2}`}
                           fill
                           className="object-cover"
                         />

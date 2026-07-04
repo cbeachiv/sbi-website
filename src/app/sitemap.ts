@@ -1,11 +1,11 @@
 import { MetadataRoute } from "next";
-import { projects } from "@/lib/projects";
+import { getProjectSlugs } from "@/lib/projects";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://sarahbeachinteriors.com";
 
-  const projectRoutes = projects.map((project) => ({
-    url: `${baseUrl}/portfolio/${project.slug}`,
+  const projectRoutes = getProjectSlugs().map((slug) => ({
+    url: `${baseUrl}/portfolio/${slug}`,
     lastModified: new Date(),
   }));
 
