@@ -7,9 +7,12 @@ import AnimatedLink from "@/components/ui/AnimatedLink";
 import CTASection from "@/components/ui/CTASection";
 import BeforeAfterSlider from "@/components/ui/BeforeAfterSlider";
 import { getFeaturedProjects } from "@/lib/projects";
+import { getI18n } from "@/lib/i18n";
 
-export default function Home() {
-  const featured = getFeaturedProjects();
+export default async function Home() {
+  const { locale, dict } = await getI18n();
+  const t = dict.home;
+  const featured = getFeaturedProjects(locale);
 
   return (
     <>
@@ -18,7 +21,7 @@ export default function Home() {
         <div className="absolute inset-0" style={{ animation: "kenburns 20s ease-in-out infinite alternate" }}>
           <Image
             src="/images/portfolio/7011-bramble/kitchen-sink.jpg"
-            alt="Beautifully designed kitchen by Sarah Beach Interiors"
+            alt={t.heroImageAlt}
             fill
             className="object-cover"
             priority
@@ -27,12 +30,12 @@ export default function Home() {
         <div className="absolute inset-0 bg-charcoal/30" />
         <div className="relative z-10 text-center px-6">
           <h1 className="font-serif text-[clamp(2.25rem,5vw,4.5rem)] font-light leading-[1.05] tracking-[0.06em] text-linen mb-8">
-            Where quiet beauty
+            {t.heroLine1}
             <br />
-            meets intentional living.
+            {t.heroLine2}
           </h1>
           <AnimatedLink href="/portfolio" variant="light">
-            Explore Our Work
+            {t.exploreOurWork}
           </AnimatedLink>
         </div>
         {/* Scroll indicator */}
@@ -47,24 +50,21 @@ export default function Home() {
           <div className="grid grid-cols-1 gap-12 md:grid-cols-2 md:gap-16 items-center">
             <ScrollReveal>
               <SectionHeading
-                label="Our Philosophy"
-                heading="We believe in spaces that breathe."
+                label={t.philosophyLabel}
+                heading={t.philosophyHeading}
               />
               <p className="mt-6 font-sans text-base font-light leading-[1.7] text-stone-light max-w-lg">
-                At Sarah Beach Interiors, design is more than aesthetics &mdash; it&rsquo;s about creating
-                spaces where you feel free, joyful, and completely yourself. We layer
-                natural materials, honest textures, and soft light to craft interiors
-                that feel lived-in from the very first day.
+                {t.philosophyBody}
               </p>
               <div className="mt-8">
-                <AnimatedLink href="/about">About Sarah Beach Interiors &rarr;</AnimatedLink>
+                <AnimatedLink href="/about">{t.aboutLink} &rarr;</AnimatedLink>
               </div>
             </ScrollReveal>
             <ScrollReveal delay={150}>
               <div className="relative aspect-[3/4] overflow-hidden">
                 <Image
                   src="/images/portfolio/7011-bramble/dining-nook.jpg"
-                  alt="A thoughtfully designed dining nook"
+                  alt={t.diningNookAlt}
                   fill
                   className="object-cover"
                 />
@@ -79,13 +79,12 @@ export default function Home() {
         <div className="mx-auto max-w-5xl px-6 md:px-12">
           <ScrollReveal>
             <SectionHeading
-              label="Before & After"
-              heading="Seeing is believing."
+              label={t.beforeAfterLabel}
+              heading={t.beforeAfterHeading}
               centered
             />
             <p className="mx-auto mt-6 max-w-xl text-center font-sans text-base font-light leading-[1.7] text-stone-light">
-              The same Mariemont kitchen, from the same spot &mdash; before and
-              after. Drag the handle to see the transformation.
+              {t.beforeAfterBody}
             </p>
           </ScrollReveal>
 
@@ -93,14 +92,17 @@ export default function Home() {
             <BeforeAfterSlider
               beforeSrc="/images/portfolio/7011-bramble/kitchen-before.jpg"
               afterSrc="/images/portfolio/7011-bramble/kitchen-after.jpg"
-              alt="7011 Bramble Ave kitchen"
+              alt={t.beforeAfterSliderAlt}
               aspectClass="aspect-[3/2]"
+              beforeLabel={dict.slider.before}
+              afterLabel={dict.slider.after}
+              comparisonAriaLabel={dict.slider.comparisonAria}
             />
           </ScrollReveal>
 
           <ScrollReveal className="mt-8 text-center">
             <AnimatedLink href="/portfolio/7011-bramble">
-              See the Full Transformation &rarr;
+              {t.seeFullTransformation} &rarr;
             </AnimatedLink>
           </ScrollReveal>
         </div>
@@ -111,8 +113,8 @@ export default function Home() {
         <div className="mx-auto max-w-7xl px-6 md:px-12 lg:px-20">
           <ScrollReveal>
             <SectionHeading
-              label="Selected Work"
-              heading="Spaces we&rsquo;ve shaped."
+              label={t.selectedWorkLabel}
+              heading={t.selectedWorkHeading}
               centered
             />
           </ScrollReveal>
@@ -147,7 +149,7 @@ export default function Home() {
           </div>
 
           <ScrollReveal className="mt-12 text-center">
-            <AnimatedLink href="/portfolio">View All Projects &rarr;</AnimatedLink>
+            <AnimatedLink href="/portfolio">{t.viewAllProjects} &rarr;</AnimatedLink>
           </ScrollReveal>
         </div>
       </section>
@@ -157,8 +159,8 @@ export default function Home() {
         <div className="mx-auto max-w-2xl px-6 text-center">
           <ScrollReveal>
             <SectionHeading
-              label="What We Do"
-              heading="How we work with you."
+              label={t.whatWeDoLabel}
+              heading={t.whatWeDoHeading}
               centered
             />
           </ScrollReveal>
@@ -166,12 +168,10 @@ export default function Home() {
           <div className="mt-12 space-y-10">
             <ScrollReveal>
               <h3 className="font-serif text-[clamp(1.25rem,2vw,1.5rem)] font-light tracking-[0.04em] text-charcoal">
-                Design Consultations
+                {t.consultationsTitle}
               </h3>
               <p className="mt-3 font-sans text-base font-light leading-[1.7] text-stone-light">
-                A focused session to help you see your space with fresh eyes. We&rsquo;ll
-                discuss your vision, offer expert guidance, and create a clear path
-                forward.
+                {t.consultationsBody}
               </p>
             </ScrollReveal>
 
@@ -179,17 +179,16 @@ export default function Home() {
 
             <ScrollReveal>
               <h3 className="font-serif text-[clamp(1.25rem,2vw,1.5rem)] font-light tracking-[0.04em] text-charcoal">
-                Full-Service Interior Design
+                {t.fullServiceTitle}
               </h3>
               <p className="mt-3 font-sans text-base font-light leading-[1.7] text-stone-light">
-                From concept to installation, we handle every detail. Your home, fully
-                reimagined with intention, warmth, and beauty that feels effortless.
+                {t.fullServiceBody}
               </p>
             </ScrollReveal>
 
             <ScrollReveal className="pt-4">
               <AnimatedLink href="/services">
-                Learn More &rarr;
+                {t.learnMore} &rarr;
               </AnimatedLink>
             </ScrollReveal>
           </div>

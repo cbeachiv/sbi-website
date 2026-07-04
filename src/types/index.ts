@@ -1,8 +1,17 @@
+import type { Locale } from "@/lib/i18n/config";
+
+export type LocalizedText = Record<Locale, string>;
+
 export interface BeforeAfterPair {
   before: string;
   after: string;
   caption: string;
   aligned: boolean;
+}
+
+export interface BeforeAfterPairSource
+  extends Omit<BeforeAfterPair, "caption"> {
+  caption: LocalizedText;
 }
 
 export interface ProcessStep {
@@ -12,6 +21,14 @@ export interface ProcessStep {
   image: string;
   imageAlt: string;
   imageCaption: string;
+}
+
+export interface ProcessStepSource
+  extends Omit<ProcessStep, "title" | "description" | "imageAlt" | "imageCaption"> {
+  title: LocalizedText;
+  description: LocalizedText;
+  imageAlt: LocalizedText;
+  imageCaption: LocalizedText;
 }
 
 export interface Project {
@@ -32,6 +49,22 @@ export interface Project {
   };
   featured: boolean;
   order: number;
+}
+
+export interface ProjectSource
+  extends Omit<
+    Project,
+    "scope" | "description" | "beforeAfters" | "process" | "visionToReality"
+  > {
+  scope: LocalizedText;
+  description: LocalizedText;
+  beforeAfters?: BeforeAfterPairSource[];
+  process?: ProcessStepSource[];
+  visionToReality?: {
+    rendering: string;
+    reality: string;
+    caption: LocalizedText;
+  };
 }
 
 export interface Service {

@@ -1,15 +1,19 @@
 import Image from "next/image";
 import ScrollReveal from "./ScrollReveal";
+import { getI18n } from "@/lib/i18n";
 
 interface CTASectionProps {
   heading?: string;
   imageSrc?: string;
 }
 
-export default function CTASection({
-  heading = "Let\u2019s create something beautiful.",
+export default async function CTASection({
+  heading,
   imageSrc,
 }: CTASectionProps) {
+  const { dict } = await getI18n();
+  const headingText = heading ?? dict.cta.heading;
+
   return (
     <section className="relative flex min-h-[50vh] items-center justify-center py-24">
       {imageSrc ? (
@@ -20,7 +24,7 @@ export default function CTASection({
       <div className="absolute inset-0 bg-charcoal/30" />
       <ScrollReveal className="relative z-10 text-center px-6">
         <p className="font-serif text-[clamp(2rem,3.5vw,3rem)] font-light tracking-[0.04em] text-linen leading-[1.1] mb-8">
-          {heading}
+          {headingText}
         </p>
         <div className="flex flex-col items-center gap-3">
           <a

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Cormorant_Garamond, Inter } from "next/font/google";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import { getI18n } from "@/lib/i18n";
 import "./globals.css";
 
 const cormorant = Cormorant_Garamond({
@@ -18,29 +19,34 @@ const inter = Inter({
   display: "swap",
 });
 
-export const metadata: Metadata = {
-  title: {
-    template: "%s | Sarah Beach Interiors",
-    default: "Sarah Beach Interiors | Interior Design in Mariemont, Ohio",
-  },
-  description:
-    "Sarah Beach Interiors is an interior design studio based in Mariemont, Ohio. We create spaces that breathe — rooted in beauty, guided by intention.",
-  openGraph: {
-    type: "website",
-    locale: "en_US",
-    siteName: "Sarah Beach Interiors",
-  },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const { dict } = await getI18n();
 
-export default function RootLayout({
+  return {
+    title: {
+      template: "%s | Sarah Beach Interiors",
+      default: dict.metadata.siteTitleDefault,
+    },
+    description: dict.metadata.siteDescription,
+    openGraph: {
+      type: "website",
+      locale: dict.metadata.ogLocale,
+      siteName: "Sarah Beach Interiors",
+    },
+  };
+}
+
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const { locale, dict } = await getI18n();
+
   return (
-    <html lang="en" className={`${cormorant.variable} ${inter.variable}`}>
+    <html lang={locale} className={`${cormorant.variable} ${inter.variable}`}>
       <body className="antialiased">
-        <Header />
+        <Header locale={locale} nav={dict.nav} labels={dict.header} />
         <main>{children}</main>
         <Footer />
       </body>

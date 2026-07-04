@@ -1,18 +1,33 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useTransition } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { LOCALE_COOKIE, type Locale } from "@/lib/i18n/config";
+import type { Dictionary } from "@/lib/i18n/dictionaries/en";
 
-const navItems = [
-  { label: "About", href: "/about" },
-  { label: "Portfolio", href: "/portfolio" },
-  { label: "Services", href: "/services" },
-  { label: "Contact", href: "/contact" },
-];
+interface HeaderProps {
+  locale: Locale;
+  nav: Dictionary["nav"];
+  labels: Dictionary["header"];
+}
 
-export default function Header() {
+function setLocaleCookie(next: Locale) {
+  document.cookie = `${LOCALE_COOKIE}=${next}; path=/; max-age=31536000; samesite=lax`;
+}
+
+export default function Header({ locale, nav, labels }: HeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isPending, startTransition] = useTransition();
+  const router = useRouter();
+
+  const navItems = [
+    { label: nav.about, href: "/about" },
+    { label: nav.portfolio, href: "/portfolio" },
+    { label: nav.services, href: "/services" },
+    { label: nav.contact, href: "/contact" },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -32,6 +47,44 @@ export default function Header() {
       document.body.style.overflow = "";
     };
   }, [isMobileMenuOpen]);
+
+  const switchLanguage = (next: Locale) => {
+    if (next === locale) return;
+    setLocaleCookie(next);
+    startTransition(() => router.refresh());
+  };
+
+  const localeButtons = (textClass: string) => (
+    <div
+      role="group"
+      aria-label={labels.switchLanguage}
+      className={`flex items-center gap-1.5 transition-opacity duration-300 ${
+        isPending ? "opacity-50" : ""
+      } ${textClass}`}
+    >
+      {(["en", "es"] as const).map((code, i) => (
+        <span key={code} className="flex items-center gap-1.5">
+          {i > 0 && <span aria-hidden="true" className="opacity-40">/</span>}
+          <button
+            onClick={() => switchLanguage(code)}
+            aria-pressed={locale === code}
+            className={`group relative uppercase transition-opacity duration-300 ${
+              locale === code
+                ? "cursor-default"
+                : "opacity-50 hover:opacity-90 cursor-pointer"
+            }`}
+          >
+            {code}
+            <span
+              className={`absolute -bottom-1 left-0 h-px w-full bg-warmth origin-left transition-transform duration-300 ${
+                locale === code ? "scale-x-100" : "scale-x-0"
+              }`}
+            />
+          </button>
+        </span>
+      ))}
+    </div>
+  );
 
   return (
     <>
@@ -68,7 +121,7 @@ export default function Header() {
               <text x="50" y="66" textAnchor="middle" fontFamily="'Cormorant Garamond', Georgia, serif" fontSize="38" fontWeight="300" fill="currentColor" letterSpacing="3">SBI</text>
             </svg>
             <span
-              className={`font-serif text-xl font-light tracking-[0.08em] transition-colors duration-500 ${
+              className={`font-serif text-sm sm:text-xl font-light tracking-[0.08em] transition-colors duration-500 ${
                 isMobileMenuOpen
                   ? "text-charcoal"
                   : isScrolled
@@ -94,33 +147,56 @@ export default function Header() {
                 <span className="absolute -bottom-1 left-0 h-px w-full bg-warmth origin-left scale-x-0 transition-transform duration-300 ease-[cubic-bezier(0.25,0.1,0.25,1)] group-hover:scale-x-100" />
               </Link>
             ))}
+            {localeButtons(
+              `font-sans text-[13px] font-medium tracking-[0.06em] transition-colors duration-300 ${
+                isScrolled ? "text-stone" : "text-linen"
+              }`
+            )}
           </nav>
 
-          {/* Mobile Hamburger */}
-          <button
-            className="relative z-50 md:hidden flex flex-col justify-center items-center w-10 h-10"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
-          >
-            <span
-              className={`block h-px w-6 transition-all duration-300 ${
+          {/* Mobile: language toggle + hamburger */}
+          <div className="flex items-center gap-4 md:hidden">
+            <button
+              onClick={() => switchLanguage(locale === "en" ? "es" : "en")}
+              aria-label={labels.switchLanguage}
+              className={`group relative z-50 font-sans text-[13px] font-medium uppercase tracking-[0.06em] transition-all duration-300 ${
+                isPending ? "opacity-50" : ""
+              } ${
                 isMobileMenuOpen
-                  ? "bg-charcoal rotate-45 translate-y-[0.5px]"
+                  ? "text-charcoal"
                   : isScrolled
-                  ? "bg-charcoal -translate-y-1"
-                  : "bg-linen -translate-y-1"
+                  ? "text-stone"
+                  : "text-linen"
               }`}
-            />
-            <span
-              className={`block h-px w-6 transition-all duration-300 ${
-                isMobileMenuOpen
-                  ? "bg-charcoal -rotate-45 -translate-y-[0.5px]"
-                  : isScrolled
-                  ? "bg-charcoal translate-y-1"
-                  : "bg-linen translate-y-1"
-              }`}
-            />
-          </button>
+            >
+              {locale === "en" ? "ES" : "EN"}
+              <span className="absolute -bottom-1 left-0 h-px w-full bg-warmth" />
+            </button>
+            <button
+              className="relative z-50 flex flex-col justify-center items-center w-10 h-10"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label={isMobileMenuOpen ? labels.closeMenu : labels.openMenu}
+            >
+              <span
+                className={`block h-px w-6 transition-all duration-300 ${
+                  isMobileMenuOpen
+                    ? "bg-charcoal rotate-45 translate-y-[0.5px]"
+                    : isScrolled
+                    ? "bg-charcoal -translate-y-1"
+                    : "bg-linen -translate-y-1"
+                }`}
+              />
+              <span
+                className={`block h-px w-6 transition-all duration-300 ${
+                  isMobileMenuOpen
+                    ? "bg-charcoal -rotate-45 -translate-y-[0.5px]"
+                    : isScrolled
+                    ? "bg-charcoal translate-y-1"
+                    : "bg-linen translate-y-1"
+                }`}
+              />
+            </button>
+          </div>
         </div>
       </header>
 
@@ -152,6 +228,22 @@ export default function Header() {
               {item.label}
             </Link>
           ))}
+          <div
+            className="transition-all duration-500"
+            style={{
+              opacity: isMobileMenuOpen ? 1 : 0,
+              transform: isMobileMenuOpen
+                ? "translateY(0)"
+                : "translateY(20px)",
+              transitionDelay: isMobileMenuOpen
+                ? `${navItems.length * 100 + 200}ms`
+                : "0ms",
+            }}
+          >
+            {localeButtons(
+              "font-sans text-base font-medium tracking-[0.15em] text-stone"
+            )}
+          </div>
         </nav>
       </div>
     </>

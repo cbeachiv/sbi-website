@@ -8,6 +8,9 @@ interface BeforeAfterSliderProps {
   afterSrc: string;
   alt: string;
   aspectClass?: string;
+  beforeLabel?: string;
+  afterLabel?: string;
+  comparisonAriaLabel?: string;
 }
 
 export default function BeforeAfterSlider({
@@ -15,6 +18,9 @@ export default function BeforeAfterSlider({
   afterSrc,
   alt,
   aspectClass = "aspect-[3/2]",
+  beforeLabel = "Before",
+  afterLabel = "After",
+  comparisonAriaLabel = "before and after comparison",
 }: BeforeAfterSliderProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [position, setPosition] = useState(50);
@@ -55,7 +61,7 @@ export default function BeforeAfterSlider({
       onPointerCancel={handlePointerUp}
       onKeyDown={handleKeyDown}
       role="slider"
-      aria-label={`${alt} — before and after comparison`}
+      aria-label={`${alt} — ${comparisonAriaLabel}`}
       aria-valuenow={Math.round(position)}
       aria-valuemin={0}
       aria-valuemax={100}
@@ -64,7 +70,7 @@ export default function BeforeAfterSlider({
       {/* After (base layer) */}
       <Image
         src={afterSrc}
-        alt={`${alt} — after`}
+        alt={`${alt} — ${afterLabel}`}
         fill
         className="object-cover pointer-events-none"
         sizes="(max-width: 768px) 100vw, 1024px"
@@ -77,7 +83,7 @@ export default function BeforeAfterSlider({
       >
         <Image
           src={beforeSrc}
-          alt={`${alt} — before`}
+          alt={`${alt} — ${beforeLabel}`}
           fill
           className="object-cover"
           sizes="(max-width: 768px) 100vw, 1024px"
@@ -86,10 +92,10 @@ export default function BeforeAfterSlider({
 
       {/* Labels */}
       <span className="absolute top-4 left-4 z-10 pointer-events-none bg-charcoal/60 px-3 py-1.5 font-sans text-[10px] font-medium uppercase tracking-[0.15em] text-linen backdrop-blur-sm">
-        Before
+        {beforeLabel}
       </span>
       <span className="absolute top-4 right-4 z-10 pointer-events-none bg-linen/85 px-3 py-1.5 font-sans text-[10px] font-medium uppercase tracking-[0.15em] text-charcoal backdrop-blur-sm">
-        After
+        {afterLabel}
       </span>
 
       {/* Divider + handle */}

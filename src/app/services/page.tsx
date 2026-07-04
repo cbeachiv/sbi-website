@@ -5,51 +5,24 @@ import ScrollReveal from "@/components/ui/ScrollReveal";
 import SectionHeading from "@/components/ui/SectionHeading";
 import AnimatedLink from "@/components/ui/AnimatedLink";
 import CTASection from "@/components/ui/CTASection";
+import { getI18n } from "@/lib/i18n";
 
-export const metadata: Metadata = {
-  title: "Services",
-  description:
-    "From design consultations to full-service interior design, Sarah Beach Interiors guides you from first conversation to final styling.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const { dict } = await getI18n();
+  return {
+    title: dict.services.metaTitle,
+    description: dict.services.metaDescription,
+  };
+}
 
-const processSteps = [
-  {
-    number: "01",
-    title: "Discovery",
-    description:
-      "We start by getting to know you — your lifestyle, your vision, and the feeling you want your space to evoke.",
-  },
-  {
-    number: "02",
-    title: "Concept",
-    description:
-      "We develop a design direction with mood boards, color palettes, and material selections that bring your vision to life.",
-  },
-  {
-    number: "03",
-    title: "Design Development",
-    description:
-      "Detailed floor plans, furniture selections, and finish specifications are refined until every element feels right.",
-  },
-  {
-    number: "04",
-    title: "Installation",
-    description:
-      "We manage every detail of the installation, coordinating deliveries, artisans, and trades to bring the design to reality.",
-  },
-  {
-    number: "05",
-    title: "Styling",
-    description:
-      "The finishing touches — art, accessories, and personal moments that make your space feel like home from day one.",
-  },
-];
+export default async function ServicesPage() {
+  const { dict } = await getI18n();
+  const t = dict.services;
 
-export default function ServicesPage() {
   return (
     <>
       <PageHero
-        title="Services"
+        title={t.heroTitle}
         imageSrc="/images/portfolio/7011-bramble/dining-nook.jpg"
       />
 
@@ -58,12 +31,11 @@ export default function ServicesPage() {
         <div className="mx-auto max-w-3xl px-6 text-center">
           <ScrollReveal>
             <SectionHeading
-              heading="From first conversation to final styling."
+              heading={t.introHeading}
               centered
             />
             <p className="mt-6 font-sans text-base font-light leading-[1.7] text-stone-light">
-              Whether you&rsquo;re looking for guidance on a single room or a complete
-              home transformation, we bring intention and beauty to every project.
+              {t.introBody}
             </p>
           </ScrollReveal>
         </div>
@@ -77,7 +49,7 @@ export default function ServicesPage() {
               <div className="relative aspect-[4/3] overflow-hidden">
                 <Image
                   src="/images/portfolio/7011-bramble/kitchen-full.jpg"
-                  alt="Kitchen designed by Sarah Beach Interiors"
+                  alt={t.consultationImageAlt}
                   fill
                   className="object-cover"
                 />
@@ -85,31 +57,22 @@ export default function ServicesPage() {
             </ScrollReveal>
             <ScrollReveal delay={150}>
               <SectionHeading
-                label="Service"
-                heading="Design Consultations"
+                label={t.serviceLabel}
+                heading={t.consultationTitle}
               />
               <p className="mt-6 font-sans text-base font-light leading-[1.7] text-stone-light">
-                A focused session to help you see your space with fresh eyes.
-                Whether you&rsquo;re planning a renovation, refreshing a room, or
-                simply need expert guidance on where to start, a design
-                consultation gives you clarity and direction.
+                {t.consultationBody}
               </p>
               <ul className="mt-6 space-y-2 font-sans text-sm font-light leading-[1.7] text-stone-light">
-                <li className="flex items-start gap-3">
-                  <span className="mt-1.5 h-px w-4 bg-warmth shrink-0" />
-                  In-home or virtual session
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="mt-1.5 h-px w-4 bg-warmth shrink-0" />
-                  Color, layout, and material guidance
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="mt-1.5 h-px w-4 bg-warmth shrink-0" />
-                  Personalized recommendations and next steps
-                </li>
+                {t.consultationDetails.map((detail) => (
+                  <li key={detail} className="flex items-start gap-3">
+                    <span className="mt-1.5 h-px w-4 bg-warmth shrink-0" />
+                    {detail}
+                  </li>
+                ))}
               </ul>
               <div className="mt-8">
-                <AnimatedLink href="/contact">Get in Touch &rarr;</AnimatedLink>
+                <AnimatedLink href="/contact">{t.getInTouch} &rarr;</AnimatedLink>
               </div>
             </ScrollReveal>
           </div>
@@ -124,7 +87,7 @@ export default function ServicesPage() {
               <div className="relative aspect-[4/3] overflow-hidden">
                 <Image
                   src="/images/portfolio/7011-bramble/living-room.jpg"
-                  alt="Living room designed by Sarah Beach Interiors"
+                  alt={t.fullServiceImageAlt}
                   fill
                   className="object-cover"
                 />
@@ -132,35 +95,22 @@ export default function ServicesPage() {
             </ScrollReveal>
             <ScrollReveal className="order-2 md:order-1">
               <SectionHeading
-                label="Service"
-                heading="Full-Service Interior Design"
+                label={t.serviceLabel}
+                heading={t.fullServiceTitle}
               />
               <p className="mt-6 font-sans text-base font-light leading-[1.7] text-stone-light">
-                From concept to completion, we manage every detail of your
-                project. We handle the selections, coordination, and
-                installation so you can enjoy the transformation without the
-                stress.
+                {t.fullServiceBody}
               </p>
               <ul className="mt-6 space-y-2 font-sans text-sm font-light leading-[1.7] text-stone-light">
-                <li className="flex items-start gap-3">
-                  <span className="mt-1.5 h-px w-4 bg-warmth shrink-0" />
-                  Complete design concept and space planning
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="mt-1.5 h-px w-4 bg-warmth shrink-0" />
-                  Custom furniture, finishes, and material sourcing
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="mt-1.5 h-px w-4 bg-warmth shrink-0" />
-                  Project management and installation oversight
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="mt-1.5 h-px w-4 bg-warmth shrink-0" />
-                  Final styling and art placement
-                </li>
+                {t.fullServiceDetails.map((detail) => (
+                  <li key={detail} className="flex items-start gap-3">
+                    <span className="mt-1.5 h-px w-4 bg-warmth shrink-0" />
+                    {detail}
+                  </li>
+                ))}
               </ul>
               <div className="mt-8">
-                <AnimatedLink href="/contact">Get in Touch &rarr;</AnimatedLink>
+                <AnimatedLink href="/contact">{t.getInTouch} &rarr;</AnimatedLink>
               </div>
             </ScrollReveal>
           </div>
@@ -172,8 +122,8 @@ export default function ServicesPage() {
         <div className="mx-auto max-w-3xl px-6 md:px-12">
           <ScrollReveal className="mb-12 md:mb-16">
             <SectionHeading
-              label="The Journey"
-              heading="Our Process"
+              label={t.journeyLabel}
+              heading={t.journeyHeading}
               centered
             />
           </ScrollReveal>
@@ -183,7 +133,7 @@ export default function ServicesPage() {
             <div className="absolute left-8 top-0 bottom-0 hidden w-px bg-warmth-light md:block" />
 
             <div className="space-y-12">
-              {processSteps.map((step, index) => (
+              {t.processSteps.map((step, index) => (
                 <ScrollReveal key={step.number} delay={index * 100}>
                   <div className="flex gap-8">
                     <div className="relative shrink-0">
